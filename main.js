@@ -1,70 +1,114 @@
-function showCreateModal() {
-  const modalContainer = document.createElement("div");
-  modalContainer.className = "modalContainer";
-  const modal = document.createElement("form");
+const header = document.querySelector('.header'); // получение хедера
 
-  const name = document.createElement("input");
-  name.placeholder = "Имя заметки";
-  name.required = true;
-  modal.appendChild(name);
+const createNotesButton = document.createElement('button'); // создал кнопку оздать заметку
+createNotesButton.classList.add('createNotesButton');
+createNotesButton.innerHTML = 'CreateNotes';
+header.appendChild(createNotesButton);
 
-  const content = document.createElement("textarea");
-  content.rows = 6;
-  content.required = true;
-  modal.appendChild(content);
 
-  const submit = document.createElement("button");
-  submit.textContent = "сохранить";
-  submit.type = "submit";
-  modal.appendChild(submit);
-
-  modal.className = "modal";
-  modalContainer.appendChild(modal);
-  document.body.appendChild(modalContainer);
-
-  modal.addEventListener("submit", (event) => {
-    event.preventDefault();
-    console.log(name.value);
-    console.log(content.value);
-    var note = { name: name.value, discription: content.value };
-    var notes = readNotes();
-    notes.push(note);
-    notes_block.appendChild(createNoteBlock(note));
-    localStorage.setItem("notes", JSON.stringify(notes));
-    modalContainer.remove();
-  });
-  modalContainer.addEventListener("click", (event) => {
-    if (event.target !== modalContainer) return;
-    modalContainer.remove();
-  });
+function generateKey(){
+    return 'TitleNotes_' + Date.now();
 }
 
-function readNotes() {
-  const rawNotes = localStorage.getItem("notes");
-  if (!rawNotes) {
-    localStorage.setItem("notes", "[]");
-    return [];
-  }
-  return JSON.parse(rawNotes);
-}
-function loadNotes() {
-  const notes = readNotes();
-  for (const note_index in notes) {
-    const note = notes[note_index];
 
-    notes_block.appendChild(createNoteBlock(note));
-  }
+const main = document.querySelector('.main-block');
+
+createNotesButton.addEventListener('click', function(){
+    createModalWindow();
+
+});
+
+function createNotesBlock(note, id){
+    const noteBlock = document.createElement('div');
+    noteBlock.dataset.id = id;
+    const nameBlock = document.createElement('p');
+    noteBlock.classList.add('notesPreview');
+    nameBlock.classList.add('notesPreviewName');
+    nameBlock.innerHTML = note.titleObject;
+    noteBlock.addEventListener('click', function(){
+        createModalWindow(note,id,function(noteData){
+            note = noteData;
+            nameBlock.innerHTML = noteData.titleObject;
+        });
+    });
+    noteBlock.appendChild(nameBlock);
+    return noteBlock;
 }
-function createNoteBlock(note) {
-  const noteBlock = document.createElement("div");
-  const name = document.createElement("div");
-  const discription = document.createElement("div");
-  name.className = "noteName";
-  discription.className = "noteDiscription";
-  noteBlock.className = "note";
-  name.innerText = note.name;
-  discription.innerText = note.discription;
-  noteBlock.appendChild(name);
-  noteBlock.appendChild(discription);
-  return noteBlock;
+
+
+function createModalWindow(note, id, onUpdate){
+    const modalWindow = document.createElement('div');
+    modalWindow.classList.add('modalWindow');
+    document.body.appendChild(modalWindow);
+
+    const modalForm = document.createElement('form');
+    modalForm.classList.add('modalForm');
+    modalWindow.appendChild(modalForm);
+
+    const titleNotes = document.createElement('input');
+    titleNotes.classList.add('titleNotes');
+    titleNotes.placeholder = 'Input name notes';
+    titleNotes.maxLength = 85;
+    
+
+    const bodyNotes = document.createElement('textarea');
+    bodyNotes.classList.add('bodyNotes');
+    bodyNotes.placeholder = 'Input your text';
+    bodyNotes.rows = 13;
+    if(note){
+        titleNotes.value = note.titleObject;
+        bodyNotes.value = note.bodyObject;
+    }
+    modalForm.appendChild(titleNotes);
+    modalForm.appendChild(bodyNotes);
+
+    const saveNotesButton = document.createElement('div');
+    saveNotesButton.classList.add('saveNotesButton');
+    saveNotesButton.innerHTML = note ?'Update Note':'Save notes';
+    modalForm.appendChild(saveNotesButton);
+
+    
+    modalWindow.addEventListener('click',function (e) {
+        const click = e.composedPath().includes(modalForm);
+        if(!click){
+            modalWindow.remove();
+        }
+    });
+
+    saveNotesButton.addEventListener('click',function(){
+        let ObjectForm = {
+            //PrevObject: notesPreview.outerHTML,
+            titleObject: titleNotes.value,
+            bodyObject: bodyNotes.value,
+        };
+        if(note){
+            onUpdate(ObjectForm);
+
+        }else{
+            
+            id = generateKey();
+            main.appendChild(createNotesBlock(ObjectForm, id));
+    
+            
+            
+        }
+
+        localStorage.setItem(id, JSON.stringify(ObjectForm));
+        modalWindow.remove();
+    });
+
 }
+
+
+for(let i = 0; i < localStorage.length; i++){
+    const key = localStorage.key(i);
+
+    if(key.startsWith('TitleNotes_')){
+        const preview = JSON.parse(localStorage.getItem(key));
+        
+        main.appendChild(createNotesBlock(preview, key));
+        //main.innerHTML += preview.PrevObject;
+    }
+    
+}
+
