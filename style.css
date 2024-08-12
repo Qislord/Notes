@@ -1,28 +1,43 @@
 body{
-
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
 }
 .wrapper {
+    display: flex;
     overflow:hidden;
+    padding: 20px;
+    gap: 20px;
+    flex-direction: column;
 }
 .header{
-    padding: 20px;
+    margin: 0 0 0 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 10px;
 }
 .logo-img{
-    height: 55px;
+    height: 30px;
 }
 .logo-name{
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bolder;
-    margin-top: 0px;
+    margin: 0 0 0 0;
 }
 .createNotesButton{
-    width: 225px;
-    height: 55px;
-    font-size: 28px;
-    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: none;
+    background: #FFE4B0;
+    border-radius: 15px;
+    position: absolute;
+    bottom:5%;
+    left: 80%;
+}
+.createIcon{
+    width: 30px;
+    padding: 5px 5px 5px 5px;
 }
 .modalWindow{
     display: flex;
@@ -80,23 +95,23 @@ body{
 }
 .notesPreview{
     display: flex;
-    width: 252px;
-    padding: 10px;
-    height: 255px;
+    border-radius: 10px;
+    padding: 0px 10px 0px 10px;
     overflow: hidden;
     text-align: center;
     justify-content: center;
     align-items: center;
-    border: 2px dashed black;
-    font-size: 28px;
+    background-color: #FFF7E6;
+    font-size: 20px;
+    font-weight: 400;
+    color: #795106;
     cursor: pointer;
 }
 .main-block {
     display: flex;
     flex-flow: row wrap;
-    width: 1440px;
+    width: 100%;
     overflow: hidden;
     height: 100%;
-    margin: 0 auto;
     gap:15px;
 }

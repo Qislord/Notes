@@ -2,7 +2,10 @@ const header = document.querySelector('.header'); // получение хеде
 
 const createNotesButton = document.createElement('button'); // создал кнопку оздать заметку
 createNotesButton.classList.add('createNotesButton');
-createNotesButton.innerHTML = 'CreateNotes';
+const createIcon = document.createElement('img');
+createIcon.classList.add('createIcon');
+createIcon.src = 'img/CreatePencil.png';
+createNotesButton.appendChild(createIcon);
 header.appendChild(createNotesButton);
 
 
