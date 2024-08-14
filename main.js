@@ -25,9 +25,12 @@ function createNotesBlock(note, id){
     const noteBlock = document.createElement('div');
     noteBlock.dataset.id = id;
     const nameBlock = document.createElement('p');
+    const bodyBlock = document.createElement('p');
+    bodyBlock.classList.add('notesPreviewBody');
     noteBlock.classList.add('notesPreview');
     nameBlock.classList.add('notesPreviewName');
     nameBlock.innerHTML = note.titleObject;
+    bodyBlock.innerHTML = note.bodyObject;
     noteBlock.addEventListener('click', function(){
         createModalWindow(note,id,function(noteData){
             note = noteData;
@@ -35,6 +38,7 @@ function createNotesBlock(note, id){
         });
     });
     noteBlock.appendChild(nameBlock);
+    noteBlock.appendChild(bodyBlock);
     return noteBlock;
 }
 

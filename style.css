@@ -5,7 +5,7 @@ body{
 .wrapper {
     display: flex;
     overflow:hidden;
-    padding: 20px;
+    padding: 5px;
     gap: 20px;
     flex-direction: column;
 }
@@ -31,7 +31,7 @@ body{
     border: none;
     background: #FFE4B0;
     border-radius: 15px;
-    position: absolute;
+    position: fixed;
     bottom:5%;
     left: 80%;
 }
@@ -97,15 +97,24 @@ body{
     display: flex;
     border-radius: 10px;
     padding: 0px 10px 0px 10px;
+    flex-direction: column;
     overflow: hidden;
     text-align: center;
     justify-content: center;
     align-items: center;
     background-color: #FFF7E6;
-    font-size: 20px;
-    font-weight: 400;
     color: #795106;
     cursor: pointer;
+}
+.notesPreviewName{
+    font-weight: bolder;
+    font-size: 18px;
+}
+.notesPreviewBody{
+    text-align: left;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 10px 10px 10px;
+    font-size: 16px;
 }
 .main-block {
     display: flex;
