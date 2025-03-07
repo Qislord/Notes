@@ -4,7 +4,7 @@ const main_block = document.getElementById('main_block') // Получаем г�
 
 const createButton = document.createElement('div'); // создаем кнопку создания заметок
 const imgCreateButton = document.createElement('img');
-imgCreateButton.src = "/img/create.png"
+imgCreateButton.src = "../img/create.png"
 createButton.classList.add('create_button');
 createButton.appendChild(imgCreateButton);
 main_block.appendChild(createButton);
