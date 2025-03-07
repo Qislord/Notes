@@ -1,0 +1,184 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Links */
+
+a, a:link, a:visited  {
+    text-decoration: none;
+}
+
+a:hover  {
+    text-decoration: none;
+}
+
+/* Common */
+
+aside, nav, footer, header, section, main {
+	display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-size: inherit;
+	font-weight: inherit;
+}
+
+ul, ul li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+img, svg {
+	max-width: 100%;
+	height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Form */
+
+input, textarea, button, select {
+	font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+input::-ms-clear {
+	display: none;
+}
+
+button, input[type="submit"] {
+    display: inline-block;
+    box-shadow: none;
+    background-color: transparent;
+    background: none;
+    cursor: pointer;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+label {
+	cursor: pointer;
+}
+
+legend {
+	display: block;
+}
+/* ------------------------------------------------------------------Обнуление стилей-------------------------------------------------------------------------------- */
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+.main_block{
+    width: 100vh;
+    max-width: 350px;
+    height: 100vh;
+    position: relative;
+    margin: 0 auto;
+    gap: 10px
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+    font-size: 24px;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+.header > p {
+    padding: 10px;
+}
+.header > img {
+    margin-top: 10px;
+}
+.create_button {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+.overlay{
+    position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: #00000029;
+}
+.modal_form{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    font-weight: 500;
+    width: 100%;
+    max-width: 350px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    gap: 10px
+}
+.notes_title {
+   
+}
+.notes_title > input {
+width: 100%;
+height: 30px;
+padding: 10px;
+background: white;
+border: 1px solid black;
+outline: none;
+border-radius: 10px;
+}
+.notes_text{
+    
+}
+.notes_text > textarea{
+    width: 100%;
+    border:1px solid black;
+    background: white;
+    padding: 10px;
+    outline: none;
+    border-radius: 10px;
+}
+.modal_save_button{
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    background: white;
+    cursor:pointer;
+    border: 1px solid black;
+}
+.modal_save_button:hover{
+    background: black;
+    color: white;
+    transition: 0.3s;
+}
