@@ -93,13 +93,16 @@ body {
     font-style: normal;
 }
 .main_block{
-    width: 100vh;
+    width: 100%;
     max-width: 350px;
-    height: 100vh;
+    height: 95vh;
     position: relative;
+    overflow: hidden;
     margin: 0 auto;
     gap: 10px
 }
+
+
 .header{
     display: flex;
     flex-direction: row;
@@ -121,16 +124,16 @@ body {
     position: absolute;
     right: 0;
     bottom: 0;
-    margin: 10px;
     cursor: pointer;
+    margin: 10px;
 }
 .overlay{
     position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background: #00000029;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00000029;
 }
 .modal_form{
     display: flex;
