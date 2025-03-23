@@ -94,10 +94,11 @@ body {
 }
 .main_block{
     width: 100%;
+    display: flex;
     max-width: 350px;
-    height: 85vh;
+    flex-direction: column;
+    height: 90vh;
     position: relative;
-    overflow: hidden;
     margin: 0 auto;
     gap: 10px
 }
@@ -121,7 +122,7 @@ body {
 .create_button {
     width: 50px;
     height: 50px;
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     cursor: pointer;
@@ -141,6 +142,7 @@ body {
     position: absolute;
     font-weight: 500;
     width: 100%;
+    min-height: 350px;
     max-width: 350px;
     top: 50%;
     left: 50%;
@@ -184,4 +186,14 @@ border-radius: 10px;
     background: black;
     color: white;
     transition: 0.3s;
+}
+.previewBlock {
+    display: flex;
+    max-width: 350px;
+    min-width: 1px;
+    border: 1px solid black;
+    
+}
+.previewTitle{
+    overflow: hidden;
 }

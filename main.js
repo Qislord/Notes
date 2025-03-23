@@ -1,6 +1,18 @@
+var data = { // save data
+    name: "",
+    body: "",
+}
+
+
 const main_block = document.getElementById('main_block') // Получаем главный блок куда буем все добавлять
 
-
+clear.addEventListener("click", ()=>{
+    localStorage.clear();
+    console.log('localestorage is clear!');
+})
+function generateKey(){
+    return "Title№_" + new Date();
+}
 
 const createButton = document.createElement('div'); // создаем кнопку создания заметок
 const imgCreateButton = document.createElement('img');
@@ -44,6 +56,21 @@ function createModalWindow(){ // Функция создания модальн�
 
     modalSaveButton.innerText = "Сохранить";
 
+
+    modalSaveButton.addEventListener('click',() => {
+        const key  = generateKey();
+
+        data.name = input.value;
+        data.body = textarea.value;
+
+        localStorage.setItem(key, JSON.stringify(data));
+
+        overlay.remove();
+
+        generatePreviewWindow(key,data);        
+    });
+    
+
     overlay.addEventListener('click', (e) =>{
         if(e.target == overlay){
             overlay.remove();
@@ -68,3 +95,29 @@ function createModalWindow(){ // Функция создания модальн�
     main_block.appendChild(overlay);
 
 }
+function generatePreviewWindow(idWindow, data){
+    const previewBlock = document.createElement('div')
+    const previewTitle = document.createElement('p');
+
+    previewBlock.classList.add("previewBlock");
+    previewTitle.classList.add("previewTitle");
+
+    previewTitle.innerText = data.name;
+
+    previewBlock.dataset.id = idWindow;
+
+    previewBlock.appendChild(previewTitle);
+    main_block.appendChild(previewBlock);
+}
+function loadLocalStorage(){
+    for(let i = 0; i < localStorage.length; i++){
+        let key = localStorage.key(i);
+        data = JSON.parse(localStorage.getItem(key))
+        console.log(data);
+        
+        generatePreviewWindow(i,data);
+    }
+}
+document.addEventListener("DOMContentLoaded", ()=> {
+    loadLocalStorage();
+});
